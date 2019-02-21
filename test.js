@@ -1,9 +1,10 @@
 var Testrail = require('testrail-api')
+const creds = require('./credentials.js');
 
 var testrail = new Testrail({
-    host: 'https://nativo.testrail.net',
-    user: 'bvo@nativo.com',
-    password: 'lbwYZzTlJQu3m08tS8fQ-xY2wQrQwiQK69v5o6LW5'
+    host: creds.qaTestUser.host,
+    user: creds.qaTestUser.email,
+    password: creds.qaTestUser.password
 });
 
 // List all the case for this project
@@ -30,3 +31,11 @@ testrail.getCaseFields(function (err, response, caseFields) {
 testrail.getResultsForRun(/*RUN_ID=*/24, /*FILTERS=*/{}, function (err, response, results) {
 console.log(results);
 });
+
+
+testrail.addResult(/*TEST_ID=*/6074, 
+    /*CONTENT=*/{"comment": "This is a fake pass and a test for Test rail",
+    "status_id": "1" }, 
+    function (err, response, result) {
+        console.log(result);
+    });
