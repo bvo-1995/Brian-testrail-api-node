@@ -3,13 +3,30 @@ var Testrail = require('testrail-api')
 var testrail = new Testrail({
     host: 'https://nativo.testrail.net',
     user: 'bvo@nativo.com',
-    password: 'hkeMsE0XS7xkEZX7qhup-QP2nLBVrY9FdbhczPFQP'
+    password: 'lbwYZzTlJQu3m08tS8fQ-xY2wQrQwiQK69v5o6LW5'
 });
 
-testrail.getCase(/*CASE_ID=*/1, function (err, response, testcase) {
-    console.log(testcase);
+// List all the case for this project
+testrail.getCases(/*PROJECT_ID=*/1)
+  .then(function (result) {
+    console.log(result.body);
+  }).catch(function (error) {
+    console.log('error', error.message);
   });
 
-  testrail.getCase(/*CASE_ID=*/82, function (err, response, body) {
-    console.log(body);
+
+// Get testcase for project
+testrail.getCase(/*CASE_ID=*/82, function (err, response, body) {
+  console.log(body);
+});
+
+//Get Editable CaseFields
+testrail.getCaseFields(function (err, response, caseFields) {
+    console.log(caseFields);
   });
+
+
+//Get Results for testrun
+testrail.getResultsForRun(/*RUN_ID=*/24, /*FILTERS=*/{}, function (err, response, results) {
+console.log(results);
+});
