@@ -1,6 +1,7 @@
 const { expect } = require('chai');
 var Testrail = require('testrail-api')
 const creds = require('../credentials/credentials.js');
+var sum = require('../Puppeteer Tests/sum');
 
 const PASSED = 1;
 const BLOCKED = 2;
@@ -27,16 +28,21 @@ describe('sample test', function () {
       await page.close();
     })
   
-    it('should have the correct page title', async function () {
-      expect(await page.title()).to.eql('Google');
+    // it('should have the correct page title', async function () {
+    //   expect(await page.title()).to.eql('Google');
       
-      testrail.addResult(/*TEST_ID=*/6074, 
-        /*CONTENT=*/{"comment": "This is a pass within Mocha",
-        "status_id": "1" }, 
-        function (err, response, result) {
-            console.log(result);
-        });
+    //   testrail.addResult(/*TEST_ID=*/6074, 
+    //     /*CONTENT=*/{"comment": "This is a pass within Mocha",
+    //     "status_id": "1" }, 
+    //     function (err, response, result) {
+    //         console.log(result);
+    //     });
     
+    // });
+
+    it('simple sum', function () {
+        expect(sum(5)).to.equal(5)
     });
+
 
   });
