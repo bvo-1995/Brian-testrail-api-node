@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "test": "mocha test/bootstrap.js --recursive test"
+    },
+    "dependencies": {
+        "chai": "^4.2.0"
+    }
+}
