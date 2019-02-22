@@ -25,14 +25,14 @@ testrail.getCaseFields(function (err, response, caseFields) {
     console.log(caseFields);
 });
 
-//Get Results for testrun
-testrail.getResultsForRun(/*RUN_ID=*/24, /*FILTERS=*/{}, function (err, response, results) {
-console.log(results);
-});
+// //Get Results for testrun
+// testrail.getResultsForRun(/*RUN_ID=*/24, /*FILTERS=*/{}, function (err, response, results) {
+// console.log(results);
+// });
 
-testrail.addResult(/*TEST_ID=*/6074, 
-    /*CONTENT=*/{"comment": "This is a fake pass and a test for Test rail",
-    "status_id": "1" }, 
-    function (err, response, result) {
-        console.log(result);
-    });
+// testrail.addResult(/*TEST_ID=*/6074, 
+//     /*CONTENT=*/{"comment": "This is a fake pass and a test for Test rail",
+//     "status_id": "1" }, 
+//     function (err, response, result) {
+//         console.log(result);
+//     });

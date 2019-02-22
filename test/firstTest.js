@@ -2,6 +2,8 @@ const { expect } = require('chai');
 var Testrail = require('testrail-api')
 const creds = require('../credentials/credentials.js');
 var sum = require('../Puppeteer Tests/sum');
+var example = require('../Puppeteer Tests/exampleDemo');
+
 
 const PASSED = 1;
 const BLOCKED = 2;
@@ -18,31 +20,61 @@ var testrail = new Testrail({
 
 describe('sample test', function () {
     let page;
+    var testStatus;
   
     before (async function () {
+    });
+
+    beforeEach (async function () {
       page = await browser.newPage();
-      await page.goto('http://google.com');
     });
   
     after (async function () {
-      await page.close();
     })
   
     // it('should have the correct page title', async function () {
-    //   expect(await page.title()).to.eql('Google');
+    //     await page.goto('http://google.com');
+    //     expect(await page.title()).to.eql('Google');
       
-    //   testrail.addResult(/*TEST_ID=*/6074, 
-    //     /*CONTENT=*/{"comment": "This is a pass within Mocha",
-    //     "status_id": "1" }, 
-    //     function (err, response, result) {
-    //         console.log(result);
-    //     });
+    // //   testrail.addResult(/*TEST_ID=*/6074, 
+    // //     /*CONTENT=*/{"comment": "This is a pass within Mocha",
+    // //     "status_id": "1" }, 
+    // //     function (err, response, result) {
+    // //         console.log(result);
+    // //     });
     
     // });
 
-    it('simple sum', function () {
-        expect(sum(5)).to.equal(5)
+      
+    it('Example demo', async function () {
+      this.timeout(0);
+      await example(page);
+
+        // await testrail.addResult(/*TEST_ID=*/6074, 
+        //     /*CONTENT=*/{"comment": "This is a pass within Mocha + Puppeteer",
+        //     "status_id": (testStatus) ? PASSED : FAIL}, 
+        //     function (err, response, result) {
+        //         console.log(result);
+        // });
+
     });
+
+    it('Example demo 2', async function () {
+      this.timeout(0);
+      await example(page);
+
+        // await testrail.addResult(/*TEST_ID=*/6074, 
+        //     /*CONTENT=*/{"comment": "This is a pass within Mocha + Puppeteer",
+        //     "status_id": (testStatus) ? PASSED : FAIL}, 
+        //     function (err, response, result) {
+        //         console.log(result);
+        // });
+
+    });
+
+    // it('simple sum', async function () {
+    //     expect(sum(5)).to.equal(5)
+    // });
 
 
   });
