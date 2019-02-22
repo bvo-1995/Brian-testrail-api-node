@@ -1,7 +1,9 @@
 const puppeteer = require('puppeteer');
 const { expect } = require('chai');
+const testrails = require('./utils.js');
 
 module.exports = async function(page) {
+
 
     const navigationPromise = page.waitForNavigation()
 
@@ -28,5 +30,7 @@ module.exports = async function(page) {
     await navigationPromise
 
     await page.close();
+
+    await testrails.addResult(6074, testrails.PASSED);
 
 }
