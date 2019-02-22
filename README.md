@@ -1,3 +1,3 @@
 # Brian-testrail-api-node
 
-Requires BlueBird/Request/testrail/-api/chai npm install
+Requires BlueBird/Request/testrail/-api/chai/mocha npm install
