@@ -13,9 +13,13 @@ var testrail = new Testrail({
   password: creds.qaTestUser.password
 });
 
-async function addResult(testID, testStatus) {
-    testrail.addResult(/*TEST_ID=*/6074, 
-        /*CONTENT=*/{"comment": "This is a pass within Mocha",
+async function addResult(testID, testStatus, comment) {
+    if(comment == '' || comment == undefined) {
+        comment = "This is a default pass within Mocha";
+    }
+
+    testrail.addResult(/*TEST_ID=*/testID, 
+        /*CONTENT=*/{"comment": comment,
         "status_id": testStatus}, 
         function (err, response, result) {
             console.log(result);

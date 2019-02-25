@@ -3,8 +3,6 @@ const { expect } = require('chai');
 const testrails = require('./utils.js');
 
 module.exports = async function(page) {
-
-
     const navigationPromise = page.waitForNavigation()
 
     await page.goto('https://www.secretflying.com/search2/?cityFrom=Los+Angeles&cityTo=&month=')
@@ -31,6 +29,6 @@ module.exports = async function(page) {
 
     await page.close();
 
-    await testrails.addResult(6074, testrails.PASSED);
+   // await testrails.addResult(6075, testrails.PASSED, "");
 
 }
