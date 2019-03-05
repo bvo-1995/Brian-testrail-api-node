@@ -1,38 +1,36 @@
 var Testrail = require('testrail-api')
-const creds = require('./credentials/credentials.js');
+const fs = require('fs');
 
 var testrail = new Testrail({
-    host: creds.qaTestUser.host,
-    user: creds.qaTestUser.email,
-    password: creds.qaTestUser.password
+    host: 'https://nativo.testrail.net',
+    email: 'bvo@nativo.com',
+    password: 'lbwYZzTlJQu3m08tS8fQ-xY2wQrQwiQK69v5o6LW5'
 });
 
-// List all the case for this project
-testrail.getCases(/*PROJECT_ID=*/1)
-  .then(function (result) {
-    console.log(result.body);
-  }).catch(function (error) {
-    console.log('error', error.message);
-});
+const PASSED = 1;
+const FAILED = 5;
 
-// Get testcase for project
-testrail.getCase(/*CASE_ID=*/82, function (err, response, body) {
-  console.log(body);
-});
+let rawTestData = fs.readFileSync('testresults.json');  
+var jsonResults = JSON.parse(rawTestData);
+var testCaseIdRegExp = new RegExp('/\bT?C(\d+)\b/g');
 
-//Get Editable CaseFields
-testrail.getCaseFields(function (err, response, caseFields) {
-    console.log(caseFields);
-});
 
-// //Get Results for testrun
-// testrail.getResultsForRun(/*RUN_ID=*/24, /*FILTERS=*/{}, function (err, response, results) {
-// console.log(results);
-// });
+for(let i = 0; i < Object.keys(jsonResults.testResults).length; i++) {
 
-// testrail.addResult(/*TEST_ID=*/6074, 
-//     /*CONTENT=*/{"comment": "This is a fake pass and a test for Test rail",
-//     "status_id": "1" }, 
-//     function (err, response, result) {
-//         console.log(result);
-//     });
+    for(let k = 0; k < Object.keys(jsonResults.testResults[i].assertionResults).length; k++) {
+        console.log(Object.keys(jsonResults.testResults[i].assertionResults).length);
+        let testStatus = (jsonResults.testResults[i].assertionResults[k].status == 'passed') ? PASSED : FAILED;
+        let comment = (testStatus == PASSED) ? "This test Passed by Automation" : "This test failed was failed by Automation";
+        let caseID = jsonResults.testResults[i].assertionResults[k].title.match(testCaseIdRegExp);
+        console.log(caseID);
+        // if(caseID) {
+        //     testrail.addResultForCase(/*RUN_ID=*/24, /*CASE_ID=*/caseID, /*CONTENT=*/{
+        //             "comment": comment,
+        //             "status_id": testStatus }, function (err, response, result) {
+        //         console.log(result);
+        //     });
+        // }
+ 
+    }
+
+}
