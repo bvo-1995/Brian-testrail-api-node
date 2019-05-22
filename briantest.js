@@ -2,18 +2,23 @@ var request = require("request");
 var restAPI = require("./helpers/restHelpers.js");
 var jar = request.jar();
 
-var campaignPayload = restAPI.minCampaignPayload;
-campaignPayload.body.name = 'Brian Automation Campaign';
+        let budgetPost = restAPI.minBudgetPOST;
 
-console.log(campaignPayload);
-request(restAPI.login, function (error, response, body) {
-    if (error) throw new Error(error);
+        request(restAPI.login, function (error, response, body) {
 
-    console.log(response.statusCode);
+            request(budgetPost, function (error, response, body) {
 
-    request(campaignPayload, function (error, response, body) {
-      if (error) throw new Error(error);
+                let id = 1;
 
-      console.log(response.body);
-    });
-});
+                let deleteBudg = restAPI.deleteBudget;
+                deleteBudg.body.id = id;
+                deleteBudg.url = deleteBudg.url + id;
+
+                //Delete Campaign
+                request(deleteBudg, function (error, response, body) {
+                    //expect(body.status.value.name).toBe('Deleted');
+                    console.log(response.statusCode);
+                });
+
+            });
+        });

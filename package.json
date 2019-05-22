@@ -1,6 +1,7 @@
 {
     "scripts": {
-        "test": "jest --verbose ./__tests__ --json --outputFile=testResults.json"
+        "test": "jest --verbose ./__tests__ --json --outputFile=testResults.json",
+        "updateTestRail" : "node sendResults.js"
     },
     "dependencies": {
         "jest": "^24.1.0",

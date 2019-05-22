@@ -43,7 +43,7 @@ describe('Login Page', () => {
             
     }, 16000);
 
-    test('C243 Login Second Test', async() => { 
+    test('Login Second Test', async() => { 
         const navigationPromise = page.waitForNavigation()
       
         await page.goto('https://qa-admin.nativo.com/publications')
