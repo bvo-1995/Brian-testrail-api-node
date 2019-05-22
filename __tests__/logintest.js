@@ -2,7 +2,8 @@ const puppeteer = require('puppeteer');
 
 describe('Login Page', () => {
 
-    beforeAll(() => {
+    beforeEach(() => {
+
     })
 
     afterAll(() => {
@@ -12,7 +13,7 @@ describe('Login Page', () => {
     afterEach(() => {
         
     })
-    test('C243 Login Test', async() => {    
+    test('C243 Login Test', async() => { 
         const navigationPromise = page.waitForNavigation()
       
         await page.goto('https://qa-admin.nativo.com/login')
@@ -22,7 +23,7 @@ describe('Login Page', () => {
         await page.waitForSelector('.ntv-grid-row:nth-child(1) > .ntv-grid-col > .ntv-input > .ntv-input__wrapper > .ntv-input__input')
         await page.click('.ntv-grid-row:nth-child(1) > .ntv-grid-col > .ntv-input > .ntv-input__wrapper > .ntv-input__input')
         
-        await page.type('.ntv-grid-row:nth-child(1) > .ntv-grid-col > .ntv-input > .ntv-input__wrapper > .ntv-input__input', 'qatester@nativo.com')
+        await page.type('.ntv-grid-row:nth-child(1) > .ntv-grid-col > .ntv-input > .ntv-input__wrapper > .ntv-input__input', 'mishtest@nativo.com')
         
         await page.waitForSelector('.ntv-grid-row:nth-child(2) > .ntv-grid-col > .ntv-input > .ntv-input__wrapper > .ntv-input__input')
         await page.click('.ntv-grid-row:nth-child(2) > .ntv-grid-col > .ntv-input > .ntv-input__wrapper > .ntv-input__input')
@@ -37,7 +38,19 @@ describe('Login Page', () => {
         await page.waitForSelector('body > #dashboard_page > nav > #mainNav > #navCampaigns')
         await page.click('body > #dashboard_page > nav > #mainNav > #navCampaigns')
         
-        await navigationPromise
+        return await navigationPromise
+    
+            
+    }, 16000);
+
+    test('C243 Login Second Test', async() => { 
+        const navigationPromise = page.waitForNavigation()
+      
+        await page.goto('https://qa-admin.nativo.com/publications')
+        
+        await page.setViewport({ width: 1280, height: 1338 })
+        
+        return await navigationPromise
             
     }, 16000);
 });
