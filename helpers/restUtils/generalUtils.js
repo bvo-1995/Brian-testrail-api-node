@@ -1,4 +1,4 @@
-var restAPI = require("./restHelpers.js");
+var restAPI = require("../model.js");
 var request = require("request");
 var jar = request.jar();
 
@@ -47,5 +47,6 @@ async function login(user, password, url) {
 }
 
 module.exports = {
-    login
+    login,
+    requestPromise
 }

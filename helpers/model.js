@@ -1,5 +1,3 @@
-
-
 var login = {
   method: 'POST',
   url: 'https://qa-admin.nativo.com/login',
@@ -8,8 +6,7 @@ var login = {
   jar: 'JAR'
 };
 
-
-var minCampaignPOST = {
+var minCampaignModel = {
   method: 'POST',
   url: 'https://qa-admin.nativo.com/api/campaigns/v3/0',
   headers:
@@ -60,7 +57,7 @@ var minCampaignPOST = {
 };
 
 
-var minBudgetPOST = {
+var minBudgetModel = {
   method: 'POST',
   url: 'https://qa-admin.nativo.com/api/budgets/v3/0',
   headers:
@@ -125,7 +122,7 @@ var minBudgetPOST = {
 };
 
 
-var deleteCampaign = {
+var deleteCampaignModel = {
   method: 'DELETE',
   url: 'https://qa-admin.nativo.com/api/campaigns/',
   headers:
@@ -145,7 +142,20 @@ var deleteCampaign = {
   jar: 'JAR'
 };
 
-var deleteBudget = {
+var getCampaignModel = {
+  method: 'GET',
+  url: 'https://qa-admin.nativo.com/api/campaigns/v3/',
+  jar: 'JAR'
+}
+
+var getBudgetModel = {
+  method: 'GET',
+  url: 'https://qa-admin.nativo.com/api/budgets/v3/',
+  jar: 'JAR'
+}
+
+
+var deleteBudgetModel = {
   method: 'DELETE',
   url: 'https://qa-admin.nativo.com/api/budgets/',
   headers:
@@ -168,8 +178,10 @@ var deleteBudget = {
 
 module.exports = {
   login: login,
-  minCampaignPOST: minCampaignPOST,
-  minBudgetPOST: minBudgetPOST,
-  deleteCampaign: deleteCampaign,
-  deleteBudget: deleteBudget
+  minCampaignModel,
+  minBudgetModel,
+  deleteCampaignModel,
+  deleteBudgetModel,
+  getCampaignModel,
+  getBudgetModel
 }
