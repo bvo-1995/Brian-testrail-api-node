@@ -19,16 +19,15 @@ async function createMinBudget(name, campaignID, deliverBy, budget, rate,flightD
 
 async function getBudget(ID) {
     const budgetData = { ...restAPI.getBudgetModel };
-    ID ? budgetData.body.url =  url + ID : null;
+    ID ? budgetData.url =  url + ID : null;
 
     return await generalUtils.requestPromise(budgetData);
-
 }
 
 async function deleteBudget(ID) {
     const budgetData = { ...restAPI.deleteBudgetModel };
     ID ? budgetData.body.id = ID : null;
-    ID ? budgetData.url = url + ID : null;
+    ID ? budgetData.url =budgetData.url + ID : null;
     
     return await generalUtils.requestPromise(budgetData);
 }
