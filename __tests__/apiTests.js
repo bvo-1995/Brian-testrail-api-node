@@ -7,10 +7,10 @@ var jar = request.jar();
 
 
 describe('API Test', () => {
-    test.only('C994 POST Login', async (done) => {
+    test('C994 POST Login', async (done) => {
         //Login
         const loginData = await generalUtils.login();
-        expect(loginData.response.statusCode).toBe(300);
+        expect(loginData.response.statusCode).toBe(200);
         done();
     }, 50000);
 
@@ -59,6 +59,30 @@ describe('API Test', () => {
         expect(deleteCampaignData.body.status.value.name).toBe('Deleted');
         done();
     }, 50000);
+
+    test.only('Get Campaign', async(done) => {
+        const loginData = await generalUtils.login();
+        const createCampaignData = await campaignUtils.createMinCampaign();
+        expect(createCampaignData.body.data.id).toBeDefined();
+        
+        const campaignInfo = await campaignUtils.getCampaign(createCampaignData.body.data.id);
+        const campaignBodyJSON = JSON.parse(campaignInfo.body);
+        expect(campaignBodyJSON.data.id).toBe(createCampaignData.body.data.id);
+        expect(campaignInfo.response.statusCode).toBe(200);
+
+        const deleteCampaignData = await campaignUtils.deleteCampaign(campaignBodyJSON.data.id);
+        expect(deleteCampaignData.response.statusCode).toBe(200);
+        expect(deleteCampaignData.body.status.value.name).toBe('Deleted');
+        done();
+    }, 16000);
+
+    test('PUT Campaign', async(done) => {
+        const loginData = await generalUtils.login();
+        const createCampaignData = await campaignUtils.createMinCampaign();
+        expect(createCampaignData.body.data.id).toBeDefined();
+
+    
+    },16000)
 
 });
 

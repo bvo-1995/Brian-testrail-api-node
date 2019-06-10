@@ -69,13 +69,61 @@ var minBudgetModel = {
     'accept-language': 'en-US,en;q=0.9',
     'x-csrf-skip': 'c477d58e802c3d47ecb0e48359388fa59ff96174'
   },
-  body:
-  {
+  body: {
+    advertiser_id: 15312,
+    related_content_settings: {
+      ads: [],
+      enabled: false,
+      list_filter: 'campaign',
+      list_mode: 'active_ads_only',
+      sort_order: 'date_started',
+      title: 'TO SEE MORE CONTENT'
+    },
+    frequency_cap: {duration: null, value: null},
+    is_read_only: false,
+    advertiser_logo_url: null,
+    campaign_manager_id: null,
+    comp_sep_enabled: false,
+    companion_assets_settings: {right: []},
+    hashtag: null,
+    id: 700831,
+    moat_article_enabled: false,
+    moat_engagement_enabled: false,
+    moat_placement_enabled: false,
+    multi_placement_ad_filtering: false,
+    name: 'Test Mish PUT Alex Test',
+    notes: null,
+    sales_persons: [],
+    salesforce_id: null,
+    template_style: null,
+    template_styles_enabled: false,
+    third_party_account: null,
+    third_party_account_type: 0,
+    tracking_breakdown: 0,
+    tracking_tags: []
+  },
+  json: true,
+  jar: 'JAR'
+};
+
+
+var editBudgetModel = {
+  method: 'PUT',
+  url: 'https://qa-admin.nativo.com/api/budgets/v3/186102',
+  headers: {
+    accept: 'application/json, text/plain, */*',
+    'content-type': 'application/json;charset=UTF-8',
+    'user-agent':
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+    'accept-language': 'en-US,en;q=0.9',
+    'x-csrf-skip': 'c477d58e802c3d47ecb0e48359388fa59ff96174'
+    },
+  body: {
     ad_server_type: 'nativo',
     billable_event_total_target: 0,
     billable_events_delivered: 0,
     budget_delivered: 0,
-    campaign_id: 141486,
+    campaign_id: 141439,
     compatibility_mode: false,
     conversion_pixels: [],
     daily_cap_io: 0,
@@ -89,8 +137,8 @@ var minBudgetModel = {
     flight_date_end: '2019-06-30 00:00:00-07:00',
     flight_date_start: '2019-05-10 00:00:00-07:00',
     force_ad_choices: false,
-    frequency_cap: { duration: null, value: null },
-    id: null,
+    frequency_cap: {duration: null, value: null},
+    id: 186089,
     impression_total_target: 244,
     impression_total_target_io: 244,
     io_budget: null,
@@ -98,7 +146,7 @@ var minBudgetModel = {
     linked_feed_url: null,
     marketplace_id: 1,
     monthly_cap_io: 0,
-    name: 'Brian Jest Test Budget',
+    name: 'Alex Test Budget - Minimum Required Fields',
     optimization_criteria: 'click_rate',
     override_tracking: false,
     placements: {},
@@ -107,7 +155,7 @@ var minBudgetModel = {
     rate_option_id: 859,
     rate_type: 'viewable_cpm',
     target_by: 'budget',
-    target_by_goal: 100,
+    target_by_goal: 29,
     targeting: {},
     third_party_data_vendor_id: null,
     tracking_breakdown: 'none',
@@ -117,6 +165,23 @@ var minBudgetModel = {
     video_feed_source: null,
     viewable_rate: 0.35
   },
+  json: true,
+  jar: 'JAR'
+};
+
+var editCampaignModel = {
+  method: 'PUT',
+  url: 'https://qa-admin.nativo.com/api/campaigns/v3/',
+  headers: {
+    accept: 'application/json, text/plain, */*',
+    'content-type': 'application/json;charset=UTF-8',
+    'user-agent':
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+    'accept-language': 'en-US,en;q=0.9',
+    'x-csrf-skip': 'c477d58e802c3d47ecb0e48359388fa59ff96174'
+    },
+  body: { 
+    },
   json: true,
   jar: 'JAR'
 };
@@ -183,5 +248,6 @@ module.exports = {
   deleteCampaignModel,
   deleteBudgetModel,
   getCampaignModel,
+  editCampaignModel,
   getBudgetModel
 }

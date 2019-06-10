@@ -26,8 +26,26 @@ async function deleteCampaign(ID) {
     return await generalUtils.requestPromise(campaignData);
 }
 
+async function editCampaign(ID, name, advertiserLogo, notes, salesForceID) {
+    const campaignData = { ...restAPI.editCampaignModel };
+    ID ? campaignData.body.id = ID : null;
+    ID ? campaignData.url = campaignData.url + ID : null;
+    name ? campaignData.body.name = name : null;
+    advertiserLogo ? campaignData.body.advertiser_logo_url = advertiserLogo : null;
+    notes ? campaignData.body.notes = notes : null;
+    salesForceID ? campaignData.body.salesForceID = salesForceID : null;
+    return await generalUtils.requestPromise(campaignData); 
+}
+
+async function prepTrackingTagsData(trackBy, tags, type) {
+    const trackingTagData = null;
+    
+    return await trackingTagData;
+}
+
 module.exports = {
     createMinCampaign,
     getCampaign,
+    editCampaign,
     deleteCampaign
 }

@@ -1,24 +1,25 @@
 var request = require("request");
-var restAPI = require("./helpers/restHelpers.js");
+var campaignUtils = require("./helpers/restUtils/CampaignUtils.js");
+var budgetUtils = require("./helpers/restUtils/BudgetUtils.js");
+var generalUtils = require("./helpers/restUtils/generalUtils.js");
 var jar = request.jar();
 
-        let budgetPost = restAPI.minBudgetPOST;
 
-        request(restAPI.login, function (error, response, body) {
+async function main() {
+    const loginData = await generalUtils.login();
+    // const createCampaignData = await campaignUtils.createMinCampaign();
+    // //expect(createCampaignData.body.data.id).toBeDefined();
+    
+    // const campaignInfo = await campaignUtils.getCampaign(141439);
+    // const testJson = JSON.parse(campaignInfo.body);
+    // //await console.log(testJson.data);
 
-            request(budgetPost, function (error, response, body) {
+    const campaignEditInfo = await campaignUtils.editCampaign(141439, "Alex Edit Test Campaign");
+    await console.log(campaignEditInfo.response.statusCode);
+    await console.log(campaignEditInfo.body.data);
 
-                let id = 1;
 
-                let deleteBudg = restAPI.deleteBudget;
-                deleteBudg.body.id = id;
-                deleteBudg.url = deleteBudg.url + id;
+    //campaignInfo.response.statusCode).toBe(200);
+}
 
-                //Delete Campaign
-                request(deleteBudg, function (error, response, body) {
-                    //expect(body.status.value.name).toBe('Deleted');
-                    console.log(response.statusCode);
-                });
-
-            });
-        });
+main();
